@@ -1,6 +1,6 @@
-const Wrapper = (children) => {
+const Wrapper = ({children, id}) => {
     return (
-        <div className = "section">
+        <div className = "section" id={id}>
             <div className = "container"> {children}</div>
         </div>
     );

@@ -10,20 +10,55 @@ import Card from './components/Card'
 import man from './assets/man.jpg'
 import woman from './assets/woman.jpg'
 import Wrapper from './components/Wrapper'
+import Filters from './components/Filters'
+import Search from './components/Search'
 
 function App() {
-  const [count, setCount] = useState(0)
+  //const [count, setCount] = useState(0)
 
   const profiles = [
-    {name: "John Doe", title: "Software Engineer", email: "email@gmail.com", img: man},
-    {name: "Jane Doe", title: "Web Developer", email: "email2@gmail.com", img: woman}
+    { name: "John Doe", title: "Software Engineer", email: "email@gmail.com", img: man },
+    { name: "Jane Doe", title: "Web Developer", email: "email2@gmail.com", img: woman }
   ]
+
+  const titles =[... new Set(profiles.map(profile => profile.title))]
+  const [title, setTitle] = useState("")
+  const handChange = (event) => {
+    setTitle(event.target.value)
+    console.log(title)
+  }
+
+  const [search, setSearch] = useState("")
+  const handleSearch = (event) => {
+    setSearch(event.target.value)
+  }
+
+  const filteredProfiles = profiles.filter(profile => 
+    (!title || profile.title === title) && (profile.name.toLowerCase().includes(search.toLowerCase()))
+  )
+
+  const handleClick = () => {
+    setTitle("")
+    setSearch("")
+  }
+
+  // 
+  // const [clicked, setClicked] = useState(false)
+  // const handleClick = () => {
+  //   setClicked((prev) => !prev)
+  // }
+
+
 
   return (
     <>
       <div>
         <Header />
+        {/* <button onClick={handleClick}>{clicked ? "Click me" : "Clicked"}</button> */}
         <About />
+        <br></br>
+        <Filters titles = {titles} onChange={handChange} searchName={handleSearch} clear = {handleClick} search = {search} title = {title}/>
+        <br></br>
         <div className = "cards"
           style = {{
             maxWidth: '1200px',
@@ -31,7 +66,7 @@ function App() {
             display: 'flex',
             gap: '2em'
           }}> {
-            profiles.map((profile, index) => (
+            filteredProfiles.map((profile, index) => (
           <Card key={profile.email} name = {profile.name} title = {profile.title} email = {profile.email} img = {profile.img}/>
             ))
           }  
