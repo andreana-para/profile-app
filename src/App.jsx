@@ -12,6 +12,7 @@ import woman from './assets/woman.jpg'
 import Wrapper from './components/Wrapper'
 import Filters from './components/Filters'
 import Search from './components/Search'
+import styles from './styles/Header.module.css'
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -42,34 +43,24 @@ function App() {
     setSearch("")
   }
 
-  // 
-  // const [clicked, setClicked] = useState(false)
-  // const handleClick = () => {
-  //   setClicked((prev) => !prev)
-  // }
-
-
+  const [mode, setMode] = useState("light")
+  const handleModeClick = () => {
+    (setMode(mode === "light" ? "dark" : "light"))
+  }
 
   return (
     <>
-      <div>
-        <Header />
-        {/* <button onClick={handleClick}>{clicked ? "Click me" : "Clicked"}</button> */}
-        <About />
-        <br></br>
-        <Filters titles = {titles} onChange={handChange} searchName={handleSearch} clear = {handleClick} search = {search} title = {title}/>
-        <br></br>
-        <div className = "cards"
-          style = {{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            display: 'flex',
-            gap: '2em'
-          }}> {
-            filteredProfiles.map((profile, index) => (
-          <Card key={profile.email} name = {profile.name} title = {profile.title} email = {profile.email} img = {profile.img}/>
-            ))
-          }  
+      <div className = {mode === "light" ? "light" : "dark"}>
+          <Header change = {handleModeClick}/>
+          <About />
+          <br></br>
+          <Filters titles = {titles} onChange={handChange} searchName={handleSearch} clear = {handleClick} search = {search} title = {title}/>
+          <br></br>
+          <div className = "cards"> {
+              filteredProfiles.map((profile, index) => (
+            <Card key={profile.email} name = {profile.name} title = {profile.title} email = {profile.email} img = {profile.img}/>
+              ))
+            }
         </div>
       </div>
     </>

@@ -1,27 +1,17 @@
-const Header = () => {
+import styles from '../styles/Header.module.css'
+
+const Header = ({change}) => {
 
     return (
         <header className = "header">
             <h1>Profile App</h1>
-            <nav
-                style = {{
-                    position: 'fixed',       // Fix it at the top
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    backgroundColor: '#5A352A',
-                    height: '40px',
-                    borderBottom: '1px solid black',
-                    padding: '0 20px',
-                    zIndex: 1000,
-                }}
-                >
+            <nav className = {styles.navBar}>
+                <div className = {styles.link}>
                 <a href="#">Home</a>
                 <a href="#">About</a>
                 <a href="#">Profiles</a>
+                </div>
+                <button onClick={change}>Light/Dark</button>
             </nav>
         </header>
     )

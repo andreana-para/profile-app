@@ -1,0 +1,28 @@
+.navBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #5A352A;
+    height: 50px;
+    border-bottom: 1px solid black;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+.links {
+    display: flex;
+    gap: 1em;
+    margin-right: auto
+}
+
+.light {
+    background-color: #ffffff;
+}
+
+.dark {
+    background-color: #383838;
+}

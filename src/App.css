@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+.cards {
+  maxWidth: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2em;
+}
+
+.light {
+  background-color: #ffffff;
+}
+
+.dark {
+  background-color: #268e8b;
+}

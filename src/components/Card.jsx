@@ -1,21 +1,13 @@
 import imgMan from '../assets/man.jpg'
+import styles from '../styles/card.module.css'
 
-const Card = ({name, title, email, img}) => {
+const Card = ({name, title, img}) => {
     // const name = "John Doe"
     // const tittle = "Software Engineer";
     // const email = ""
 
-    return (<div className="card"
-            style = {{
-                backgroundColor: '#dedede',
-            }}
-        >
-        <img src={img} 
-        alt="Headshot of a man" 
-        style= {{
-            width: '50px',
-            height: '120px'
-        }}/>
+    return (<div className={styles.card}>
+        <img src={img} className = {styles.images} alt="Headshot of a man" />
         <h2>{name}</h2>
         <p>{title}</p>
     </div>)
