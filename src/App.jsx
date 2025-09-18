@@ -13,14 +13,21 @@ import Wrapper from './components/Wrapper'
 import Filters from './components/Filters'
 import Search from './components/Search'
 import styles from './styles/Header.module.css'
+import AddProfiles from './components/AddProfile.jsx'
+
+const initialProfiles = [
+  { name: "John Doe", title: "Software Engineer", email: "email@gmail.com", img: man },
+  { name: "Jane Doe", title: "Web Developer", email: "email2@gmail.com", img: woman }
+]
 
 function App() {
   //const [count, setCount] = useState(0)
 
-  const profiles = [
-    { name: "John Doe", title: "Software Engineer", email: "email@gmail.com", img: man },
-    { name: "Jane Doe", title: "Web Developer", email: "email2@gmail.com", img: woman }
-  ]
+  const [profiles, setProfiles] = useState(initialProfiles);
+
+  const addProfiles = (profile) => {
+    setProfiles(prev => [...prev, profile])
+  }
 
   const titles =[... new Set(profiles.map(profile => profile.title))]
   const [title, setTitle] = useState("")
@@ -53,6 +60,7 @@ function App() {
       <div className = {mode === "light" ? "light" : "dark"}>
           <Header change = {handleModeClick}/>
           <About />
+          <AddProfiles addProfiles={addProfiles} />
           <br></br>
           <Filters titles = {titles} onChange={handChange} searchName={handleSearch} clear = {handleClick} search = {search} title = {title}/>
           <br></br>
