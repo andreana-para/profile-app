@@ -13,7 +13,13 @@ import Wrapper from './components/Wrapper'
 import Filters from './components/Filters'
 import Search from './components/Search'
 import styles from './styles/Header.module.css'
-import AddProfiles from './components/AddProfile.jsx'
+import AddProfile from './components/AddProfile.jsx'
+import FetchedProfiles from './components/FetchedProfiles.jsx'
+import AboutPage from './pages/AboutPage.jsx'
+import AddProfilePage from './pages/AddProfilePage.jsx'
+
+import { HashRouter, Routes, Route} from 'react-router-dom'
+import HomePage from './pages/HomePage'
 
 const initialProfiles = [
   { name: "John Doe", title: "Software Engineer", email: "email@gmail.com", img: man },
@@ -56,22 +62,17 @@ function App() {
   }
 
   return (
-    <>
+    <HashRouter>
+      <Header change = {handleModeClick}/>
       <div className = {mode === "light" ? "light" : "dark"}>
-          <Header change = {handleModeClick}/>
-          <About />
-          <AddProfiles addProfiles={addProfiles} />
-          <br></br>
-          <Filters titles = {titles} onChange={handChange} searchName={handleSearch} clear = {handleClick} search = {search} title = {title}/>
-          <br></br>
-          <div className = "cards"> {
-              filteredProfiles.map((profile, index) => (
-            <Card key={profile.email} name = {profile.name} title = {profile.title} email = {profile.email} img = {profile.img}/>
-              ))
-            }
-        </div>
+
+          <Routes>
+            <Route path="/" element={<HomePage />}/>
+            <Route path="/about" element={<AboutPage/>}/>
+            <Route path="/profiles" element={<AddProfilePage/>}/>
+          </Routes>
       </div>
-    </>
+    </HashRouter>
   )
 }
 
