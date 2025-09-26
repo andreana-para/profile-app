@@ -9,14 +9,11 @@ import Card2 from './components/Card2'
 import Card from './components/Card'
 import man from './assets/man.jpg'
 import woman from './assets/woman.jpg'
-import Wrapper from './components/Wrapper'
-import Filters from './components/Filters'
-import Search from './components/Search'
-import styles from './styles/Header.module.css'
-import AddProfile from './components/AddProfile.jsx'
-import FetchedProfiles from './components/FetchedProfiles.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import AddProfilePage from './pages/AddProfilePage.jsx'
+import FetchedProfilesPage from './pages/FetchedProfilesPage.jsx'
+import ProfileDetails from './pages/ProfileDetails.jsx'
+import ProfilesLayout from './pages/ProfilesLayout.jsx'
 
 import { HashRouter, Routes, Route} from 'react-router-dom'
 import HomePage from './pages/HomePage'
@@ -67,9 +64,14 @@ function App() {
       <div className = {mode === "light" ? "light" : "dark"}>
 
           <Routes>
-            <Route path="/" element={<HomePage />}/>
+            <Route path="/" element={<HomePage profiles={profiles} addProfiles={addProfiles}/>}/>
             <Route path="/about" element={<AboutPage/>}/>
-            <Route path="/profiles" element={<AddProfilePage/>}/>
+            <Route path="/profiles" element={<AddProfilePage addProfiles={addProfiles}/>}/>
+            <Route path="/fetchedProfiles" element={<ProfilesLayout />}>
+              <Route index element={<FetchedProfilesPage />}/>
+              <Route path="profile/:id" element={<ProfileDetails />} />
+            </Route>
+            
           </Routes>
       </div>
     </HashRouter>

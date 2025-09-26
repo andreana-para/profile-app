@@ -4,20 +4,9 @@ import Filters from '../components/Filters'
 import man from '../assets/man.jpg'
 import woman from '../assets/woman.jpg'
 import Card from '../components/Card'
-import FetchedProfiles from '../components/FetchedProfiles.jsx'
 
-const initialProfiles = [
-    { name: "John Doe", title: "Software Engineer", email: "email@gmail.com", img: man },
-    { name: "Jane Doe", title: "Web Developer", email: "email2@gmail.com", img: woman }
-]
 
-const HomePage = () => {
-
-    const [profiles, setProfiles] = useState(initialProfiles);
-
-    const addProfiles = (profile) => {
-        setProfiles(prev => [...prev, profile])
-    }
+const HomePage = ({profiles, addProfiles}) => {
 
     const titles = [... new Set(profiles.map(profile => profile.title))]
     const [title, setTitle] = useState("")
@@ -53,7 +42,6 @@ const HomePage = () => {
                 ))
             }
             </div>
-            <FetchedProfiles />
         </>
     )
 }

@@ -14,7 +14,9 @@ const Header = ({change}) => {
                 <Link to="/about">About</Link>
 
                 {/* <a href="#">Profiles</a> */}
-                <Link to="/profiles">Profiles</Link>
+                <Link to="/profiles">Add a Profile</Link>
+
+                <Link to="/fetchedProfiles">Fetched Profiles</Link>
 
                 </div>
                 <button onClick={change}>Light/Dark</button>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Filters from './Filters';
 import Card from './Card'
+import {Link } from "react-router-dom"
 
 
 const FetchedProfiles = () => {
@@ -48,15 +49,19 @@ const FetchedProfiles = () => {
             />
             <br></br>
             <div className = "cards"> 
-                { fetchedProfiles.map((profile, index) => (
+                { fetchedProfiles.map((profile) => (
+                    <Link key = {profile.id} to={`/fetchedProfiles/profile/${profile.id}`}>
+
                 <Card 
-                key={profile.id} 
-                name = {profile.name} 
-                title = {profile.title} 
-                email = {profile.email} 
-                img = {profile.image_url}/>
-                ))
-                }
+                    key={profile.id} 
+                    name = {profile.name} 
+                    title = {profile.title} 
+                    email = {profile.email} 
+                    img = {profile.image_url}
+                />
+
+                </Link>
+                ))}
             </div>
         </>
     );
