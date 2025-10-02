@@ -1,12 +1,13 @@
 import AddProfile from "../components/AddProfile"
-import { useState } from 'react'
+import { useState, useContext} from 'react'
 import Filters from '../components/Filters'
-import man from '../assets/man.jpg'
-import woman from '../assets/woman.jpg'
 import Card from '../components/Card'
+import ProfilesContext from '../contexts/ProfilesContext.jsx'
 
 
-const HomePage = ({profiles, addProfiles}) => {
+const HomePage = () => {
+
+    const {profiles} = useContext(ProfilesContext);
 
     const titles = [... new Set(profiles.map(profile => profile.title))]
     const [title, setTitle] = useState("")
@@ -32,7 +33,7 @@ const HomePage = ({profiles, addProfiles}) => {
     return (
         <>
             <h1>Profile App</h1>
-            <AddProfile addProfiles={addProfiles} />
+            <AddProfile />
             <br></br>
             <Filters titles={titles} onChange={handChange} searchName={handleSearch} clear={handleClick} search={search} title={title} />
             <br></br>

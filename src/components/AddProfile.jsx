@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styles from '../styles/AddProfile.module.css'
 import { useNavigate } from 'react-router-dom';
+import ProfilesContext from '../contexts/ProfilesContext';
 
 const stripTags = (s) => String(s ?? "").replace(/<\/?[^>]+./g, "");
 const trimCollapse = (s) => String(s ?? "").trim().replace(/\s+/g, "");
@@ -15,12 +16,14 @@ const initialValues = {
 
 
 
-const AddProfile = ({ addProfiles }) => {
+const AddProfile = () => {
     const [values, setValues] = useState(initialValues)
     const {name, title, email, bio, img} = values;
     const [errors, setErrors] = useState("")
     const [isSubmitting, setSubmitting] = useState(false)
     const [success, setSuccess] = useState("")
+
+    const { addProfiles } = useContext(ProfilesContext);
 
     const navigate = useNavigate()
 

@@ -1,12 +1,16 @@
 import styles from '../styles/Header.module.css';
 import { Link } from 'react-router-dom'
+import ModeContext from '../contexts/ModeContext';
+import { useContext } from 'react';
 
-const Header = ({change}) => {
+const Header = () => {
+
+    const { handleModeClick } = useContext(ModeContext);
 
     return (
         <header className = "header">
             <nav className = {styles.navBar}>
-                <div className = {styles.link}>
+                <div className = {styles.links}>
                 {/* <a href="#">Home</a> */}
                 <Link to="/">Home</Link> 
                 
@@ -19,7 +23,7 @@ const Header = ({change}) => {
                 <Link to="/fetchedProfiles">Fetched Profiles</Link>
 
                 </div>
-                <button onClick={change}>Light/Dark</button>
+                <button onClick={handleModeClick}>Light/Dark</button>
             </nav>
         </header>
     )
