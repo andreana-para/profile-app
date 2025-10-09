@@ -1,10 +1,10 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, lazy, Suspense } from 'react'
 import './App.css'
 import Header from './components/Header'
 import AboutPage from './pages/AboutPage.jsx'
 import AddProfilePage from './pages/AddProfilePage.jsx'
 import FetchedProfilesPage from './pages/FetchedProfilesPage.jsx'
-import ProfileDetails from './pages/ProfileDetails.jsx'
+//import ProfileDetails from './pages/ProfileDetails.jsx'
 import ProfilesLayout from './pages/ProfilesLayout.jsx'
 import ModeContext from './contexts/ModeContext.jsx'
 
@@ -15,6 +15,8 @@ import HomePage from './pages/HomePage'
 //   { name: "John Doe", title: "Software Engineer", email: "email@gmail.com", img: man },
 //   { name: "Jane Doe", title: "Web Developer", email: "email2@gmail.com", img: woman }
 // ]
+
+const LazyComponent = lazy(() => import("./pages/ProfileDetails"))
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -63,7 +65,12 @@ function App() {
             <Route path="/profiles" element={<AddProfilePage />}/>
             <Route path="/fetchedProfiles" element={<ProfilesLayout />}>
               <Route index element={<FetchedProfilesPage />}/>
-              <Route path="profile/:id" element={<ProfileDetails />} />
+              
+              <Route path="profile/:id" element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <LazyComponent />
+                </Suspense>} />
+            
             </Route>
             
           </Routes>

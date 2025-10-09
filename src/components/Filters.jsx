@@ -1,4 +1,6 @@
-const Filters = ({titles, onChange, searchName, clear, title, search}) => {
+import { memo } from "react"
+
+const Filters = memo(({titles, onChange, searchName, clear, title, search}) => {
     return (
         <div className = "filter-container">
             <div className = "select-filter">
@@ -17,6 +19,6 @@ const Filters = ({titles, onChange, searchName, clear, title, search}) => {
                 <button onClick={clear}>Clear</button>
         </div>
     )
-}
+} )
 
 export default Filters;

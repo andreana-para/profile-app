@@ -46,7 +46,7 @@ export const formReducer = (state, action) => {
         case "FINISH_SUBMITT":
             return {
                 ...state,
-                isSubmitting: falsem
+                isSubmitting: false
             }
 
         default:
