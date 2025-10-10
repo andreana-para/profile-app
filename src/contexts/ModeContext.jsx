@@ -1,4 +1,5 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useContext } from 'react';
+
 
 const ModeContext = createContext();
 
@@ -15,3 +16,5 @@ export const ModeProvider = ({children}) => {
         {children}
     </ModeContext.Provider>
 }
+
+export const useMode = () => useContext(ModeContext)

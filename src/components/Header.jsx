@@ -1,11 +1,11 @@
 import styles from '../styles/Header.module.css';
 import { Link } from 'react-router-dom'
-import ModeContext from '../contexts/ModeContext';
-import { useContext } from 'react';
+import {useMode} from '../contexts/ModeContext';
+//import { useContext } from 'react';
 
 const Header = () => {
 
-    const { handleModeClick } = useContext(ModeContext);
+    const { handleModeClick } = useMode;
 
     return (
         <header className = "header">
